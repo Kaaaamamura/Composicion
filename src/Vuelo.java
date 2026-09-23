@@ -48,28 +48,33 @@ public class Vuelo {
         System.out.println("Capacidad: " + capacidadMaxima + " asientos.");
     }
 
-    public void mostrarAsiento() {
+    public void mostrarAsientos() {
         System.out.println("Estado de asientos - " + numero + " : ");
         for (Asiento a : asientos) {
             a.mostrarEstado();
         }
     }
 
+    // Busca un asiento por código y lo ocupa
     public void embarcar(String codigoAsiento) {
         for (Asiento a : asientos) {
-            a.ocupar();
-            return;
-        }
-
-        System.out.println("Asiento: " + codigoAsiento + "no encontrado en vuelo " + numero + ".");
-    }
-
-    public void desembarcar(String codigoAsiento){
-        for(Asiento a : asientos){
             if (a.getCodigo().equals(codigoAsiento)) {
-                
+                a.ocupar();
+                return;
             }
         }
+        System.out.println("Asiento " + codigoAsiento + " no encontrado en vuelo " + numero + ".");
+    }
+
+    // Busca un asiento por código y lo libera
+    public void desembarcar(String codigoAsiento) {
+        for (Asiento a : asientos) {
+            if (a.getCodigo().equals(codigoAsiento)) {
+                a.liberar();
+                return;
+            }
+        }
+        System.out.println("Asiento " + codigoAsiento + " no encontrado en vuelo " + numero + ".");
     }
 
 }
